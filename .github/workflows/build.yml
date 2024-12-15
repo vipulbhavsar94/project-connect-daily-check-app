@@ -1,6 +1,6 @@
 name: Build
 on:
-  workflow_dispatch:  # This makes it manually triggerable only
+  workflow_dispatch:
 
 jobs:
   build:
@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v3
+        with:
+          ref: release/1.0.10  # This will specifically checkout release/1.0.10 branch
 
       - name: Install Node.js
         uses: actions/setup-node@v3
@@ -24,8 +26,6 @@ jobs:
 
       - name: Build Electron app
         run: npm run electron:make-not-publish
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
