@@ -14,7 +14,7 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v3
         with:
-          ref: release/1.0.10  # This will specifically checkout release/1.0.10 branch
+          ref: release/1.0.10
 
       - name: Install Node.js
         uses: actions/setup-node@v3
@@ -22,15 +22,17 @@ jobs:
           node-version: 16
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm install
+          cd electron && npm install
 
       - name: Build Electron app
-        run: npm run electron:make-not-publish
+        run: npm run build:electron
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.os }}-build
           path: |
-            dist/*.exe
-            dist/*.msi
+            electron/dist/*.exe
+            electron/dist/*.msi
