@@ -15,7 +15,6 @@ import { DatePipe } from '@angular/common';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Network } from '@awesome-cordova-plugins/network/ngx';
-import { NgxElectronModule } from 'ngx-electron';
 import { PcdcHeaderComponent } from '../pcdc-header/pcdc-header.component';
 
 export const createTranslateLoader = (http: HttpClient) =>
@@ -35,7 +34,6 @@ export const createTranslateLoader = (http: HttpClient) =>
   imports: [
     CommonModule,
     NgPipesModule,
-    NgxElectronModule,
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {
