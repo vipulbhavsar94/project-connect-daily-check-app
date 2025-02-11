@@ -5,6 +5,8 @@ on:
 jobs:
   build:
     name: Build (${{ matrix.os }})
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
